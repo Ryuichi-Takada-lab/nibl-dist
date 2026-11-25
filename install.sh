@@ -1,11 +1,11 @@
 #!/bin/bash
 # Nibl installer — downloads the ready-made app (no source code) and sets it up.
-#   curl -fsSL https://raw.githubusercontent.com/OWNER/nibl/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Ryuichi-Takada-lab/nibl-dist/main/install.sh | bash
 #   … | bash -s -- --uninstall
 # Options (environment): NIBL_REPO=owner/name   NIBL_ZIP=/path/or/url.zip (for testing)
 set -euo pipefail
 
-REPO="${NIBL_REPO:-OWNER/nibl}"
+REPO="${NIBL_REPO:-Ryuichi-Takada-lab/nibl-dist}"
 APP_NAME="Nibl.app"
 say()  { printf '\033[38;2;94;230;223m▌\033[0m %s\n' "$*"; }
 fail() { printf '\033[38;2;255;107;139m✖ %s\033[0m\n' "$*" >&2; exit 1; }
