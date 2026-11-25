@@ -3,6 +3,8 @@
 A little wax drop who lives in your MacBook's notch: watches your AI coding agents
 (Claude Code, Codex), dances to your music, keeps quick notes and shows your Mac's memory.
 
+Step-by-step guide (in Russian): https://ryuichi-takada-lab.github.io/nibl-dist/
+
 ## Install
 
 ```bash

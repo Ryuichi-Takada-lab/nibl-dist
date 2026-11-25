@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nibl — установка</title>
+<meta name="description" content="Nibl — капля воска в чёлке Mac. Как установить за две минуты, даже если вы никогда не открывали Терминал.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.4' cy='.35' r='.7'%3E%3Cstop offset='0' stop-color='%23c9fffb'/%3E%3Cstop offset='.5' stop-color='%235ee6df'/%3E%3Cstop offset='1' stop-color='%237c6cf0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cellipse cx='32' cy='36' rx='26' ry='22' fill='url(%23g)'/%3E%3Ccircle cx='24' cy='34' r='3.5' fill='%231a0b16'/%3E%3Ccircle cx='40' cy='34' r='3.5' fill='%231a0b16'/%3E%3Cpath d='M27 42 q5 4 10 0' stroke='%231a0b16' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* One reading column; a calm hero with the wax drop, then two ways in, then help */
+:root {
+  --bg: #0d0b14; --panel: #15121f; --line: #2a2540; --fg: #e6e1f5; --muted: #a49cbf;
+  --teal: #5ee6df; --lav: #b8a4ff; --violet: #7c6cf0; --warn: #ffd479; --bad: #ff6b8b;
+  --display: "Unbounded", "Golos Text", system-ui, sans-serif;
+  --body: "Golos Text", -apple-system, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 var(--body); padding-inline: 16px; padding-block: 0 80px; }
+a { color: var(--teal); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--lav); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 760px; margin: 0 auto; min-width: 0; display: flex; flex-direction: column; gap: 56px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(22px, 4.5vw, 28px); font-weight: 500; }
+h3 { font-size: 17px; font-weight: 500; }
+p { margin: 0; max-width: 64ch; }
+.muted { color: var(--muted); }
+code { font-family: var(--mono); font-size: .88em; background: rgba(184,164,255,.12); padding: 1px 6px; border-radius: 5px; }
+kbd { font-family: var(--body); font-size: .9em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: 0 7px; background: var(--panel); white-space: nowrap; }
+section { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--lav); }
+
+/* Hero */
+header.hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; padding-top: 56px; }
+.hero h1 { overflow-wrap: anywhere; font-size: clamp(28px, 8vw, 56px); font-weight: 700; letter-spacing: -.01em; line-height: 1.05; }
+.hero h1 span { color: var(--lav); }
+.hero .lead { margin-top: 18px; font-size: 19px; color: var(--muted); }
+.hero .lead b { color: var(--fg); font-weight: 500; }
+.req { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; color: var(--muted); }
+
+/* The wax drop: an original CSS drawing, no app code */
+.drop { width: 168px; height: 150px; position: relative; filter: drop-shadow(0 0 28px rgba(94,230,223,.35)); }
+.drop .body { position: absolute; inset: 18px 8px 0 8px; border-radius: 52% 48% 46% 54% / 60% 58% 42% 40%;
+  background: radial-gradient(circle at 36% 30%, #d6fffc 0 6%, #8ff5f0 18%, #5ee6df 40%, #7c6cf0 92%);
+  animation: wobble 4.2s ease-in-out infinite; }
+.drop .eye { position: absolute; top: 62px; width: 13px; height: 15px; border-radius: 50%; background: #1a0b16; animation: blink 4.2s infinite; }
+.drop .eye.l { left: 54px; } .drop .eye.r { left: 98px; }
+.drop .mouth { position: absolute; top: 88px; left: 72px; width: 22px; height: 11px; border: 3px solid #1a0b16; border-top: 0; border-radius: 0 0 14px 14px; }
+.drop .bubble { position: absolute; left: 70px; top: 0; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #d6fffc, #5ee6df 60%, #7c6cf0); animation: rise 4.2s ease-in-out infinite; opacity: .9; }
+@keyframes wobble { 0%,100% { border-radius: 52% 48% 46% 54% / 60% 58% 42% 40%; transform: translateY(0) scale(1, 1); }
+  50% { border-radius: 46% 54% 52% 48% / 56% 62% 38% 44%; transform: translateY(-4px) scale(1.03, .97); } }
+@keyframes blink { 0%,46%,50%,100% { transform: scaleY(1); } 48% { transform: scaleY(.1); } }
+@keyframes rise { 0% { transform: translateY(22px) scale(.5); opacity: 0; } 30% { opacity: .9; } 100% { transform: translateY(-14px) scale(1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .drop * { animation: none !important; } }
+
+/* Tabs for the two ways */
+.tabs { display: flex; gap: 6px; border: 1px solid var(--line); border-radius: 12px; padding: 5px; background: var(--panel); width: fit-content; max-width: 100%; flex-wrap: wrap; }
+.tabs button { font: 500 15px var(--body); color: var(--muted); background: none; border: 0; border-radius: 8px; padding: 9px 16px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: rgba(124,108,240,.3); color: var(--fg); }
+.tabs button small { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+
+/* Steps */
+ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: flex; flex-direction: column; gap: 14px; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; min-width: 0; }
+ol.steps > li::before { content: counter(s); font: 500 14px/34px var(--mono); text-align: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(94,230,223,.12); color: var(--teal); }
+ol.steps > li > div { min-width: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
+.note { border-left: 3px solid var(--lav); padding: 2px 0 2px 14px; color: var(--muted); font-size: 15px; }
+.note.warn { border-color: var(--warn); }
+
+/* Command box with a copy button */
+.cmd { display: flex; align-items: stretch; border: 1px solid var(--line); border-radius: 10px; background: #0a0810; overflow: hidden; min-width: 0; }
+.cmd pre { margin: 0; padding: 14px 16px; overflow-x: auto; flex: 1; min-width: 0; font: 14px/1.5 var(--mono); color: var(--teal); white-space: pre; }
+.cmd button { flex: none; border: 0; border-left: 1px solid var(--line); background: var(--panel); color: var(--fg); font: 500 14px var(--body); padding: 0 16px; cursor: pointer; min-width: 120px; }
+.cmd button:hover { background: rgba(124,108,240,.25); }
+.cmd button.done { color: var(--teal); }
+
+/* Terminal mock: what you will see */
+.term { border: 1px solid var(--line); border-radius: 10px; background: #0a0810; font: 13px/1.6 var(--mono); padding: 12px 16px; color: var(--muted); overflow-x: auto; }
+.term .ok { color: var(--teal); }
+
+/* Tables */
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font: 500 12px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--panel); }
+td:first-child { font-weight: 500; }
+
+details { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+details summary { cursor: pointer; padding: 14px 18px; font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+details summary::after { content: "+"; color: var(--lav); font-family: var(--mono); }
+details[open] summary::after { content: "−"; }
+details > div { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 10px; color: var(--muted); }
+
+footer { color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 24px; }
+
+@media (max-width: 560px) {
+  header.hero { grid-template-columns: minmax(0, 1fr); padding-top: 32px; }
+  .drop { order: -1; width: 120px; height: 108px; transform-origin: left top; }
+  .drop .body { inset: 12px 6px 0 6px; }
+  .drop .eye { top: 44px; width: 10px; height: 12px; } .drop .eye.l { left: 38px; } .drop .eye.r { left: 70px; }
+  .drop .mouth { top: 63px; left: 51px; width: 17px; height: 8px; }
+  .drop .bubble { left: 50px; }
+  .cmd { flex-direction: column; } .cmd button { border-left: 0; border-top: 1px solid var(--line); padding: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <h1>Nibl<span>/</span>установка</h1>
+      <p class="lead">Нибл — капля воска из лавовой лампы, которая живёт <b>в чёлке Mac</b>. Показывает, чем заняты ИИ-агенты, танцует под музыку и хранит быстрые заметки. Поставить его можно за две минуты, даже если вы никогда не открывали Терминал.</p>
+      <div class="req"><span class="pill">Mac с процессором M1 и новее</span><span class="pill">macOS 15 и новее</span><span class="pill">бесплатная бета 0.1.0</span></div>
+    </div>
+    <div class="drop" aria-hidden="true"><div class="bubble"></div><div class="body"></div><div class="eye l"></div><div class="eye r"></div><div class="mouth"></div></div>
+  </header>
+
+  <section id="check">
+    <div class="eyebrow">шаг 0 · минута</div>
+    <h2>Проверьте, подходит ли ваш Mac</h2>
+    <ol class="steps">
+      <li><div><p>Нажмите на яблоко <b></b> в левом верхнем углу экрана и выберите <b>«Об этом Mac»</b>.</p></div></li>
+      <li><div><p>В строке <b>«Чип»</b> должно быть Apple M1, M2, M3, M4 или новее. Если написано Intel, Nibl на этом Mac пока не заработает.</p></div></li>
+      <li><div><p>В строке <b>macOS</b> — версия 15 (Sequoia) или выше. Если ниже, сначала обновите систему: «Системные настройки» → «Основные» → «Обновление ПО».</p></div></li>
+    </ol>
+    <p class="muted">Claude Code или Codex ставить не обязательно: без них Нибл всё равно танцует под музыку, хранит заметки и показывает нагрузку на Mac.</p>
+  </section>
+
+  <section id="install">
+    <div class="eyebrow">шаг 1 · две минуты</div>
+    <h2>Установите Nibl</h2>
+    <div class="tabs" role="tablist" aria-label="Способ установки">
+      <button role="tab" id="tab-cmd" aria-controls="way-cmd" aria-selected="true">Одной командой<small>проще, без предупреждений</small></button>
+      <button role="tab" id="tab-zip" aria-controls="way-zip" aria-selected="false">Через архив<small>без Терминала</small></button>
+    </div>
+
+    <div id="way-cmd" role="tabpanel" aria-labelledby="tab-cmd">
+      <ol class="steps">
+        <li><div>
+          <p>Откройте Терминал: нажмите <kbd>⌘ Command</kbd> + <kbd>Пробел</kbd>, напечатайте <b>Терминал</b> и нажмите <kbd>Return</kbd>. Откроется окно с мигающим курсором — бояться его не нужно, вы только вставите одну строку.</p>
+        </div></li>
+        <li><div>
+          <p>Нажмите <b>«Скопировать»</b>:</p>
+          <div class="cmd"><pre id="c-install">curl -fsSL https://raw.githubusercontent.com/Ryuichi-Takada-lab/nibl-dist/main/install.sh | bash</pre><button type="button" data-copy="c-install">Скопировать</button></div>
+        </div></li>
+        <li><div>
+          <p>Нажмите в окно Терминала, вставьте строку (<kbd>⌘ Command</kbd> + <kbd>V</kbd>) и нажмите <kbd>Return</kbd>.</p>
+        </div></li>
+        <li><div>
+          <p>Подождите 10–30 секунд. Пароль не понадобится. Вы увидите примерно это:</p>
+          <div class="term">▌ Looking for the latest Nibl…<br>▌ Downloading…<br>▌ Installing into /Applications…<br>▌ Starting Nibl — he'll show you around in the notch.<br><span class="ok">▌ Done.</span></div>
+        </div></li>
+        <li><div>
+          <p>Нибл появится в чёлке у верхнего края экрана и начнёт знакомство. Терминал можно закрыть.</p>
+          <p class="note">Чтобы обновить Nibl, запустите ту же команду ещё раз.</p>
+        </div></li>
+      </ol>
+    </div>
+
+    <div id="way-zip" role="tabpanel" aria-labelledby="tab-zip" hidden>
+      <ol class="steps">
+        <li><div>
+          <p>Скачайте архив: <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.1.0.zip">Nibl-0.1.0.zip</a> (1,7 МБ). Он попадёт в «Загрузки». Если архив вам прислали — используйте его.</p>
+        </div></li>
+        <li><div><p>Дважды нажмите на архив. Рядом появится папка <b>Nibl-0.1.0</b>.</p></div></li>
+        <li><div><p>Откройте её и перетащите <b>Nibl</b> в папку <b>«Программы»</b> — она есть слева в окне Finder.</p></div></li>
+        <li><div>
+          <p>Откройте «Программы» и дважды нажмите на Nibl. macOS скажет, что не может проверить приложение. Нажмите <b>«Готово»</b> (не «Переместить в корзину»).</p>
+          <p class="note warn">Так macOS ведёт себя со всеми приложениями не из App Store. Nibl пока туда не выложен.</p>
+        </div></li>
+        <li><div><p>Откройте <b>«Системные настройки»</b> → <b>«Конфиденциальность и безопасность»</b> и пролистайте вниз до раздела «Безопасность».</p></div></li>
+        <li><div><p>Рядом со строкой про Nibl нажмите <b>«Всё равно открыть»</b>, подтвердите паролем от Mac или Touch ID и нажмите <b>«Открыть»</b>.</p></div></li>
+        <li><div>
+          <p>Готово: Нибл появится в чёлке. Это нужно сделать один раз, дальше Nibl открывается обычно.</p>
+          <p class="note">Нет кнопки «Всё равно открыть»? Ещё раз дважды нажмите на Nibl и вернитесь в настройки: кнопка появляется на час после попытки запуска.</p>
+        </div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="first-run">
+    <div class="eyebrow">шаг 2</div>
+    <h2>Первый запуск</h2>
+    <p>Нибл спросит язык и за минуту проведёт по вкладкам. Кнопка «Включить всё сразу» настроит всё за один раз. Наведите курсор на Нибла — раскроется панель; один щелчок снаружи — закроется.</p>
+    <p>macOS может спросить разрешения. Каждое нужно для своей функции, любое можно не давать:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Что спрашивает macOS</th><th>Зачем Ниблу</th><th>Если не разрешить</th></tr></thead>
+      <tbody>
+        <tr><td>Запись звука системы</td><td>танцевать под настоящий бас; звук не записывается и никуда не отправляется</td><td>танцует под ровный ритм</td></tr>
+        <tr><td>Управление Spotify, «Музыкой», Терминалом</td><td>кнопки «пауза / дальше», обложка, переход к вкладке Терминала</td><td>эти кнопки не сработают</td></tr>
+        <tr><td>Универсальный доступ</td><td>горячие клавиши: дважды правый ⌘ — открыть Нибла, правые ⌘ + ⌥ — заметка</td><td>открывайте Нибла наведением</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">Если на Mac есть Claude Code или Codex, Нибл подключит их сам. Нибла над строкой ввода Claude Code, статус-бар и цвета можно включить в панели: «Система» → «Терминал».</p>
+  </section>
+
+  <section id="help">
+    <div class="eyebrow">помощь</div>
+    <h2>Если что-то не так</h2>
+    <details><summary>«Nibl needs an Apple Silicon Mac»</summary><div><p>У вас Mac с процессором Intel. На нём Nibl пока не работает.</p></div></details>
+    <details><summary>«Nibl needs macOS 15 or newer»</summary><div><p>Обновите macOS («Системные настройки» → «Основные» → «Обновление ПО») и запустите команду снова.</p></div></details>
+    <details><summary>«Couldn't reach GitHub»</summary><div><p>Нет интернета или GitHub недоступен. Проверьте подключение (или VPN) и повторите. Можно поставить через архив.</p></div></details>
+    <details><summary>«Nibl повреждён»</summary><div><p>Файлы приложения изменены или архив скачался не целиком. Удалите Nibl и поставьте заново одной командой.</p></div></details>
+    <details><summary>Нибла не видно</summary><div><p>Откройте Nibl в «Программах». С двумя мониторами выберите экран в панели: «Система» → «Экран».</p></div></details>
+    <details><summary>Горячие клавиши не работают</summary><div><p>Откройте «Систему» в панели Нибла → «Разрешить», затем включите Nibl в списке «Универсальный доступ».</p></div></details>
+    <p class="muted">Не помогло — напишите тому, кто прислал вам Nibl, и приложите снимок экрана (<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd>).</p>
+  </section>
+
+  <section id="remove">
+    <div class="eyebrow">если надоест</div>
+    <h2>Как удалить</h2>
+    <p>Удаляйте командой, даже если ставили из архива: она уберёт всё, что Nibl подключил к Claude Code, Codex и Терминалу, и вернёт прежние настройки. Откройте Терминал и вставьте:</p>
+    <div class="cmd"><pre id="c-remove">curl -fsSL https://raw.githubusercontent.com/Ryuichi-Takada-lab/nibl-dist/main/install.sh | bash -s -- --uninstall</pre><button type="button" data-copy="c-remove">Скопировать</button></div>
+    <p class="muted">Заметки Нибла останутся в файле <code>~/.nibl/notes.md</code> — на случай, если вернётесь.</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Nibl. Бета 0.1.0. Пользуясь Nibl, вы принимаете лицензию из архива (License.txt).</p>
+    <p>Nibl работает с Claude Code и Codex, но не создан Anthropic или OpenAI и не связан с ними.</p>
+    <p><a href="https://github.com/Ryuichi-Takada-lab/nibl-dist">Установщик на GitHub</a></p>
+  </footer>
+</div>
+
+<script>
+// Tabs
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+function pick(tab) {
+  tabs.forEach(t => {
+    const on = t === tab;
+    t.setAttribute('aria-selected', on);
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  });
+  try { localStorage.setItem('nibl-way', tab.id); } catch (e) {}
+}
+tabs.forEach(t => t.addEventListener('click', () => pick(t)));
+try { const saved = localStorage.getItem('nibl-way'); if (saved && document.getElementById(saved)) pick(document.getElementById(saved)); } catch (e) {}
+
+// Copy buttons
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const pre = document.getElementById(btn.dataset.copy);
+    const text = pre.textContent;
+    let ok = false;
+    try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {}
+    if (!ok) {
+      const r = document.createRange(); r.selectNodeContents(pre);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      try { ok = document.execCommand('copy'); } catch (e) {}
+    }
+    btn.textContent = ok ? 'Скопировано ✓' : 'Выделено — нажмите ⌘C';
+    btn.classList.toggle('done', ok);
+    setTimeout(() => { btn.textContent = 'Скопировать'; btn.classList.remove('done'); }, 2500);
+  });
+});
+</script>
+</body>
+</html>
