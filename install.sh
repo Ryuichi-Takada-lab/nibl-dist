@@ -24,9 +24,11 @@ uninstall() {
     [ -f "$f" ] || continue
     /usr/bin/osascript -l JavaScript - "$f" <<'JS' >/dev/null 2>&1 || true
 function run(argv) {
-  const app = Application.currentApplication(); app.includeStandardAdditions = true;
+  ObjC.import('Foundation');
   const path = argv[0];
-  const j = JSON.parse(app.read(Path(path), { as: 'utf8' }));
+  const text = $.NSString.stringWithContentsOfFileEncodingError(path, $.NSUTF8StringEncoding, null);
+  if (text.isNil()) return;
+  const j = JSON.parse(text.js);
   const h = j.hooks || {};
   if (!JSON.stringify(h).includes('nibl-hook')) return;   // nothing of Nibl's: leave the file as it is
   for (const ev of Object.keys(h)) {
@@ -35,8 +37,7 @@ function run(argv) {
     if (!h[ev].length) delete h[ev];
   }
   if (Object.keys(h).length) j.hooks = h; else delete j.hooks;
-  const f = app.openForAccess(Path(path), { writePermission: true });
-  app.setEof(f, { to: 0 }); app.write(JSON.stringify(j, null, 2) + '\n', { to: f, as: 'utf8' }); app.closeAccess(f);
+  $(JSON.stringify(j, null, 2) + '\n').writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, null);
 }
 JS
   done
