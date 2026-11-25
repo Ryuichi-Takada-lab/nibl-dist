@@ -19,31 +19,76 @@ uninstall() {
   say "Removing Nibl…"
   pkill -x Nibl 2>/dev/null || true
   for d in /Applications "$HOME/Applications"; do rm -rf "$d/$APP_NAME"; done
-  # Disconnect the agents: drop Nibl's hook entries, keep everything else
+  local term="$HOME/.nibl/term"
+
+  # Shell theme: the rc files go back to how they were, Terminal.app to its old profile
+  [ -x "$term/bin/nibl" ] && bash "$term/bin/nibl" uninstall --quiet >/dev/null 2>&1 || true
+
+  # The Claude Code mod, if the app installed it (a copy from anywhere else stays)
+  for d in "$HOME/.claude" "$HOME/.claude-personal"; do
+    [ -f "$d/settings.json" ] && grep -q "\"$term\"" "$d/settings.json" || continue
+    if command -v claude >/dev/null; then
+      CLAUDE_CONFIG_DIR="$d" claude plugin uninstall nibl@nibl >/dev/null 2>&1 || true
+      CLAUDE_CONFIG_DIR="$d" claude plugin marketplace remove nibl >/dev/null 2>&1 || true
+    fi
+  done
+
+  # Settings files: drop Nibl's agent hooks, the mod's entries, and put back the
+  # status line and Claude Code theme Nibl replaced; keep everything else
   for f in "$HOME/.claude/settings.json" "$HOME/.claude-personal/settings.json" "$HOME/.codex/hooks.json"; do
     [ -f "$f" ] || continue
-    /usr/bin/osascript -l JavaScript - "$f" <<'JS' >/dev/null 2>&1 || true
+    /usr/bin/osascript -l JavaScript - "$f" "$term" <<'JS' >/dev/null 2>&1 || true
 function run(argv) {
   ObjC.import('Foundation');
-  const path = argv[0];
-  const text = $.NSString.stringWithContentsOfFileEncodingError(path, $.NSUTF8StringEncoding, null);
-  if (text.isNil()) return;
-  const j = JSON.parse(text.js);
+  const [path, term] = argv;
+  const read = p => { const t = $.NSString.stringWithContentsOfFileEncodingError(p, $.NSUTF8StringEncoding, null); return t.isNil() ? null : t.js; };
+  const text = read(path);
+  if (text === null) return;
+  const j = JSON.parse(text);
+  let changed = false;
+
   const h = j.hooks || {};
-  if (!JSON.stringify(h).includes('nibl-hook')) return;   // nothing of Nibl's: leave the file as it is
-  for (const ev of Object.keys(h)) {
-    h[ev] = h[ev].map(e => ({ ...e, hooks: (e.hooks || []).filter(x => !String(x.command || '').includes('nibl-hook')) }))
-                 .filter(e => e.hooks.length);
-    if (!h[ev].length) delete h[ev];
+  if (JSON.stringify(h).includes('nibl-hook')) {
+    for (const ev of Object.keys(h)) {
+      h[ev] = h[ev].map(e => ({ ...e, hooks: (e.hooks || []).filter(x => !String(x.command || '').includes('nibl-hook')) }))
+                   .filter(e => e.hooks.length);
+      if (!h[ev].length) delete h[ev];
+    }
+    if (Object.keys(h).length) j.hooks = h; else delete j.hooks;
+    changed = true;
   }
-  if (Object.keys(h).length) j.hooks = h; else delete j.hooks;
+
+  const m = j.extraKnownMarketplaces && j.extraKnownMarketplaces.nibl;
+  if (m && m.source && m.source.path === term) {
+    delete j.extraKnownMarketplaces.nibl;
+    if (!Object.keys(j.extraKnownMarketplaces).length) delete j.extraKnownMarketplaces;
+    if (j.enabledPlugins) delete j.enabledPlugins['nibl@nibl'];
+    changed = true;
+  }
+
+  if (j.statusLine && String(j.statusLine.command || '').includes('/.nibl/term/statusline.sh')) {
+    const prev = read(term + '/state/prev-statusline.json');
+    if (prev) j.statusLine = JSON.parse(prev); else delete j.statusLine;
+    changed = true;
+  }
+
+  if (j.theme === 'custom:nibl') {
+    const prev = read(term + '/state/prev-theme');
+    if (prev) j.theme = prev; else delete j.theme;
+    changed = true;
+  }
+
+  if (!changed) return;   // nothing of Nibl's: leave the file as it is
   $(JSON.stringify(j, null, 2) + '\n').writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, null);
 }
 JS
   done
-  rm -rf "$HOME/.nibl/app"
+  for d in "$HOME/.claude" "$HOME/.claude-personal"; do rm -f "$d/themes/nibl.json"; done
+
+  rm -rf "$HOME/.nibl/app" "$term" "$HOME/.nibl/bin/nibl-term"
+  rmdir "$HOME/.nibl/bin" 2>/dev/null || true
   defaults delete dev.nibl.app >/dev/null 2>&1 || true
-  say "Nibl removed. Your notes stay in ~/.nibl/notes.md."
+  say "Nibl removed. Your notes stay in ~/.nibl/notes.md, the bar settings in ~/.config/nibl."
   exit 0
 }
 
