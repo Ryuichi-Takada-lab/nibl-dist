@@ -28,6 +28,7 @@ function run(argv) {
   const path = argv[0];
   const j = JSON.parse(app.read(Path(path), { as: 'utf8' }));
   const h = j.hooks || {};
+  if (!JSON.stringify(h).includes('nibl-hook')) return;   // nothing of Nibl's: leave the file as it is
   for (const ev of Object.keys(h)) {
     h[ev] = h[ev].map(e => ({ ...e, hooks: (e.hooks || []).filter(x => !String(x.command || '').includes('nibl-hook')) }))
                  .filter(e => e.hooks.length);
