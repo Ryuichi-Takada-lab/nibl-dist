@@ -313,7 +313,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
         <a class="btn primary" href="#install">Установить бесплатно</a>
         <a class="btn ghost" href="#demo">Посмотреть, как работает</a>
       </div>
-      <div class="req"><span class="pill">Mac с M1 и новее</span><span class="pill">macOS 15+</span><span class="pill">бета 0.2.3</span></div>
+      <div class="req"><span class="pill">Mac с M1 и новее</span><span class="pill">macOS 15+</span><span class="pill">бета 0.3.0 · живой питомец</span></div>
     </div>
     <div class="stage" id="heroStage" aria-label="Нибл: капля воска, которая меняет настроение">
       <canvas id="heroWax"></canvas>
@@ -377,7 +377,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 <section class="section" id="moods" style="background:linear-gradient(transparent, var(--bg2) 20%, var(--bg2) 80%, transparent)">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">23 настроения</div>
+      <div class="eyebrow">26 настроений</div>
       <h2>У каждого состояния — свой цвет и своё лицо</h2>
       <p>Нибл не мигает лампочками: он перетекает из одного настроения в другое. Через пару дней ты узнаёшь, что делает агент, даже не глядя в терминал. Наведи на любое.</p>
     </div>
@@ -428,8 +428,8 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
       </article>
       <article class="card c-keys reveal">
         <div class="eyebrow">голос · новое</div>
-        <h3>Держи правый ⌥ и говори</h3>
-        <p>Отпустил — Нибл превратил речь в текст и отправил агенту. Пока говоришь, он лаймовый и «слушает тебя».</p>
+        <h3>Диктовка без рук</h3>
+        <p>Подержи правый ⌥ секунду — запись пойдёт сама, ⌥ ещё раз — стоп. Нибл спросит, куда отправить: агенту, в приложение, в заметки или скопировать.</p>
         <div class="vis keys"><span class="key tap" style="min-width:76px">⌥</span><span style="color:#b8f55a;font:600 14px var(--mono)">● слушаю…</span></div>
       </article>
       <article class="card c-keys reveal">
@@ -438,10 +438,28 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
         <p>Открыть Нибла, не трогая мышь. Не крадёт фокус: курсор остаётся в терминале.</p>
         <div class="vis keys"><span class="key tap">⌘</span><span class="key tap2">⌘</span></div>
       </article>
+      <article class="card c-music reveal">
+        <div class="eyebrow">новое · погладь</div>
+        <h3>Он ластится</h3>
+        <p>Быстро поводи курсором по Ниблу — порозовеет, полетят сердечки. Щёлкни — замурчит.</p>
+        <div class="vis" style="font-size:26px;color:#ff7aa8;letter-spacing:6px">♥ ♥ ♥</div>
+      </article>
+      <article class="card c-notes reveal">
+        <div class="eyebrow">новое · музыка</div>
+        <h3>Цвета обложки</h3>
+        <p>Играет трек с жёлтой обложкой — Нибл жёлтый. С синей — синий.</p>
+        <div class="vis chips"><span style="border-color:#ffd400;color:#ffd400">жёлтая</span><span style="border-color:#4f7dff;color:#7aa2ff">синяя</span><span style="border-color:#ff4a6b;color:#ff7a90">красная</span></div>
+      </article>
+      <article class="card c-monitor reveal">
+        <div class="eyebrow">новое · занят с тобой</div>
+        <h3>Записывает и смотрит кино</h3>
+        <p>Печатаешь в документе — он строчит в блокнотик. Смотришь видео — жуёт попкорн.</p>
+        <div class="vis chips"><span>✎ записывает</span><span>▶ смотрит видео</span></div>
+      </article>
       <article class="card c-skins reveal">
         <div class="eyebrow">скины и аксессуары</div>
         <h3>Воск, неон, перламутр, хром</h3>
-        <p>Меняется только материал — характер тот же. Размер в чёлке — маленький, обычный или большой. При запуске и когда ты вернулся, Нибл здоровается. Под музыку: мягкие наушники, круглые очки или восковые ноты. А ещё Нибл показывает заряд батареи: цвет вытекает сверху, когда Mac садится.</p>
+        <p>Меняется только материал — характер тот же. Чёлка — «как вырез» ровно под камерой, обычная или большая, и закрывается сама, когда уводишь курсор. При запуске и когда ты вернулся, Нибл здоровается. Под музыку: мягкие наушники, круглые очки или восковые ноты. А ещё Нибл показывает заряд батареи: цвет вытекает сверху, когда Mac садится.</p>
         <div class="vis skins"><i class="wax" title="воск"></i><i class="neon" title="неон"></i><i class="pearl" title="перламутр"></i><i class="chrome" title="хром"></i></div>
       </article>
       <article class="card c-quiet reveal">
@@ -558,8 +576,8 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 
       <div id="way-zip" role="tabpanel" aria-labelledby="tab-zip" hidden>
         <ol class="steps">
-          <li><div><p>Скачай архив: <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.2.3.zip">Nibl-0.2.3.zip</a> (1,7 МБ). Он попадёт в «Загрузки». Если архив тебе прислали — бери его.</p></div></li>
-          <li><div><p>Дважды нажми на архив — рядом появится папка <b>Nibl-0.2.3</b>.</p></div></li>
+          <li><div><p>Скачай архив: <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.3.0.zip">Nibl-0.3.0.zip</a> (1,7 МБ). Он попадёт в «Загрузки». Если архив тебе прислали — бери его.</p></div></li>
+          <li><div><p>Дважды нажми на архив — рядом появится папка <b>Nibl-0.3.0</b>.</p></div></li>
           <li><div><p>Открой её и перетащи <b>Nibl</b> в <b>«Программы»</b> — эта папка есть слева в окне Finder.</p></div></li>
           <li><div><p>Открой «Программы» и дважды нажми на Nibl. macOS скажет, что не может проверить приложение. Нажми <b>«Готово»</b> — не «Переместить в корзину».</p><p class="note warn">Так macOS встречает все приложения не из App Store. Нибла там пока нет.</p></div></li>
           <li><div><p>Открой <b>«Системные настройки»</b> → <b>«Конфиденциальность и безопасность»</b> и пролистай вниз до раздела «Безопасность».</p></div></li>
@@ -609,7 +627,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 
 <footer>
   <div class="container">
-    <span><span class="logo" style="font-size:15px">N<i>\</i>BL</span> · © 2026 · бета 0.2.3 · пользуясь Ниблом, ты принимаешь лицензию из архива</span>
+    <span><span class="logo" style="font-size:15px">N<i>\</i>BL</span> · © 2026 · бета 0.3.0 · пользуясь Ниблом, ты принимаешь лицензию из архива</span>
     <span>Работает с Claude Code и Codex, но не создан Anthropic или OpenAI и не связан с ними</span>
     <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist">Установщик на GitHub</a>
   </div>
@@ -634,6 +652,9 @@ const MOODS = {
   LISTEN:['слушает тебя','ты говоришь голосом (правый ⌥)','#b8f55a','● слушаю…'],
   HELLO:['здоровается','ты включил Нибла или вернулся к Mac','#7dff8a','👋 привет!'],
   GREET:['приветствует','рядом появился другой Нибл','#e07bff','👋 привет, Нибл Кеша!'],
+  WALK:['идёт','ползёт к чёлке, когда появляется','#5ee6df','→'],
+  NOTE:['записывает','ты печатаешь в документе или чате','#f5d08a','✎ …'],
+  MOVIE:['смотрит видео','играет видео','#ffb3f0','▶ видео'],
 };
 // how each mood moves and what face it makes
 const STYLE = {
@@ -645,7 +666,7 @@ const STYLE = {
   OVERLOAD:{m:'shake',e:'squint',mo:'wavy'}, PET:{m:'idle',e:'happy',mo:'cat'}, BORED:{m:'slow',e:'squint',mo:'flat'},
   SLEEP:{m:'sleep',e:'closed',mo:'flat'}, MUSIC:{m:'dance',e:'happy',mo:'smile',phones:true},
   LISTEN:{m:'tilt',e:'open',mo:'o',look:[.45,-.05]},
-  HELLO:{m:'hop',e:'happy',mo:'grin'}, GREET:{m:'hop',e:'happy',mo:'grin',look:[.45,-.1]},
+  HELLO:{m:'hop',e:'happy',mo:'grin'}, WALK:{m:'hop',e:'open',mo:'smile',look:[.5,.05]}, NOTE:{m:'idle',e:'open',mo:'flat',look:[.2,.45]}, MOVIE:{m:'slow',e:'wide',mo:'o',look:[0,-.15]}, GREET:{m:'hop',e:'happy',mo:'grin',look:[.45,-.1]},
   GREETL:{m:'hop',e:'happy',mo:'grin',look:[-.45,-.1]}, WATCHL:{m:'idle',e:'open',mo:'smile',look:[-.4,0]}, SURPRISEL:{m:'hop',e:'wide',mo:'o',look:[-.3,-.1]},
 };
 
