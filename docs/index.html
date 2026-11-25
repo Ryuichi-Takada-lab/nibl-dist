@@ -353,7 +353,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 <section class="section" id="moods" style="background:linear-gradient(transparent, var(--bg2) 20%, var(--bg2) 80%, transparent)">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">20 настроений</div>
+      <div class="eyebrow">21 настроение</div>
       <h2>У каждого состояния — свой цвет и своё лицо</h2>
       <p>Нибл не мигает лампочками: он перетекает из одного настроения в другое. Через пару дней ты узнаёшь, что делает агент, даже не глядя в терминал. Наведи на любое.</p>
     </div>
@@ -447,7 +447,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
         <div class="term-tabs" id="termTabs"></div>
       </div>
       <div class="term-list reveal">
-        <div><p><b>Тот же Нибл, только пикселями.</b> Те же 20 настроений: думает, пишет, запускает, спрашивает.</p></div>
+        <div><p><b>Тот же Нибл, только пикселями.</b> Те же настроения: думает, пишет, запускает, спрашивает.</p></div>
         <div><p><b>Статус-бар со всем важным.</b> Папка, ветка, модель, контекст и лимиты 5 часов и недели — с цветом, который краснеет к пределу.</p></div>
         <div><p><b>Тема оболочки и Терминала.</b> Спокойное приглашение zsh или bash и профиль Terminal.app в тех же цветах.</p></div>
         <div><p><b>Выключается так же легко.</b> Отключил — вернулся твой прежний статус-бар и тема, rc-файлы как были.</p></div>
@@ -568,6 +568,7 @@ const MOODS = {
   WARN:['нервничает','лимит ≥ 75%','#ffb020','⚠ лимит 78%'], OVERLOAD:['перегрев','лимит ≥ 90%','#ff4a1f','♨ лимит 93%'],
   PET:['мурчит','ты щёлкнул по нему','#ff7aa8','♡'], BORED:['скучает','тишина 2 минуты','#8fa3b8','…'],
   SLEEP:['спит','тишина 5 минут','#7a62a8','z z z'], MUSIC:['слушает','играет музыка','#ff2d78','♪ Neon Rain'],
+  LISTEN:['слушает тебя','ты говоришь голосом (правый ⌥)','#b8f55a','● слушаю…'],
 };
 // how each mood moves and what face it makes
 const STYLE = {
@@ -578,6 +579,7 @@ const STYLE = {
   SURPRISE:{m:'hop',e:'wide',mo:'o'}, ERROR:{m:'shake',e:'x',mo:'frown'}, WARN:{m:'jitter',e:'wide',mo:'wavy'},
   OVERLOAD:{m:'shake',e:'squint',mo:'wavy'}, PET:{m:'idle',e:'happy',mo:'cat'}, BORED:{m:'slow',e:'squint',mo:'flat'},
   SLEEP:{m:'sleep',e:'closed',mo:'flat'}, MUSIC:{m:'dance',e:'happy',mo:'smile',phones:true},
+  LISTEN:{m:'tilt',e:'open',mo:'o',look:[.45,-.05]},
 };
 
 // ── Wax: a small metaball lava lamp of our own (WebGL, 2D fallback) ─
