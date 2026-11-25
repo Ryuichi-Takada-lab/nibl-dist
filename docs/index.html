@@ -313,7 +313,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
         <a class="btn primary" href="#install">Установить бесплатно</a>
         <a class="btn ghost" href="#demo">Посмотреть, как работает</a>
       </div>
-      <div class="req"><span class="pill">Mac с M1 и новее</span><span class="pill">macOS 15+</span><span class="pill">бета 0.3.0 · живой питомец</span></div>
+      <div class="req"><span class="pill">Mac с M1 и новее</span><span class="pill">macOS 15+</span><span class="pill">бета 0.3.1 · живой питомец</span></div>
     </div>
     <div class="stage" id="heroStage" aria-label="Нибл: капля воска, которая меняет настроение">
       <canvas id="heroWax"></canvas>
@@ -576,8 +576,8 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 
       <div id="way-zip" role="tabpanel" aria-labelledby="tab-zip" hidden>
         <ol class="steps">
-          <li><div><p>Скачай архив: <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.3.0.zip">Nibl-0.3.0.zip</a> (1,7 МБ). Он попадёт в «Загрузки». Если архив тебе прислали — бери его.</p></div></li>
-          <li><div><p>Дважды нажми на архив — рядом появится папка <b>Nibl-0.3.0</b>.</p></div></li>
+          <li><div><p>Скачай архив: <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.3.1.zip">Nibl-0.3.1.zip</a> (1,7 МБ). Он попадёт в «Загрузки». Если архив тебе прислали — бери его.</p></div></li>
+          <li><div><p>Дважды нажми на архив — рядом появится папка <b>Nibl-0.3.1</b>.</p></div></li>
           <li><div><p>Открой её и перетащи <b>Nibl</b> в <b>«Программы»</b> — эта папка есть слева в окне Finder.</p></div></li>
           <li><div><p>Открой «Программы» и дважды нажми на Nibl. macOS скажет, что не может проверить приложение. Нажми <b>«Готово»</b> — не «Переместить в корзину».</p><p class="note warn">Так macOS встречает все приложения не из App Store. Нибла там пока нет.</p></div></li>
           <li><div><p>Открой <b>«Системные настройки»</b> → <b>«Конфиденциальность и безопасность»</b> и пролистай вниз до раздела «Безопасность».</p></div></li>
@@ -627,7 +627,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 
 <footer>
   <div class="container">
-    <span><span class="logo" style="font-size:15px">N<i>\</i>BL</span> · © 2026 · бета 0.3.0 · пользуясь Ниблом, ты принимаешь лицензию из архива</span>
+    <span><span class="logo" style="font-size:15px">N<i>\</i>BL</span> · © 2026 · бета 0.3.1 · пользуясь Ниблом, ты принимаешь лицензию из архива</span>
     <span>Работает с Claude Code и Codex, но не создан Anthropic или OpenAI и не связан с ними</span>
     <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist">Установщик на GitHub</a>
   </div>
@@ -647,7 +647,7 @@ const MOODS = {
   ASK:['спрашивает','нужен твой ответ','#fcee0a','? Bash rm -rf build/'], DONE:['готово','ход завершён','#2ee6a6','✓ готово'],
   SURPRISE:['удивлён','правка больше 150 строк','#ffd6e0','! +214 строк'], ERROR:['ошибка','что-то упало','#ff1f4b','✖ exit 1'],
   WARN:['нервничает','лимит ≥ 75%','#ffb020','⚠ лимит 78%'], OVERLOAD:['перегрев','лимит ≥ 90%','#ff4a1f','♨ лимит 93%'],
-  PET:['мурчит','ты щёлкнул по нему','#ff7aa8','♡'], BORED:['скучает','тишина 2 минуты','#8fa3b8','…'],
+  PET:['мурчит','ты щёлкнул по нему','#ff7aa8','♡'], BORED:['скучает','тишина 2 минуты — играет, читает, смотрит видео','#8fa3b8','🎮 …'],
   SLEEP:['спит','тишина 5 минут','#7a62a8','z z z'], MUSIC:['слушает','играет музыка','#ff2d78','♪ Neon Rain'],
   LISTEN:['слушает тебя','ты говоришь голосом (правый ⌥)','#b8f55a','● слушаю…'],
   HELLO:['здоровается','ты включил Нибла или вернулся к Mac','#7dff8a','👋 привет!'],
