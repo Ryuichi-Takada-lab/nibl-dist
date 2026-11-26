@@ -60,12 +60,22 @@ a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
     <code>curl -fsSL https://raw.githubusercontent.com/Ryuichi-Takada-lab/nibl-dist/main/install.sh | bash</code>
   </div>
 
+  <section class="release" id="v0.4.6">
+    <div class="meta"><span class="ver">0.4.6</span><span class="date">26 ноября 2026</span><span class="tag new">последняя</span></div>
+    <div>
+      <h2>Хотфикс: большая чёлка снова большая</h2>
+      <ul>
+        <li><b>Большая чёлка остаётся большой</b> и поднимается до выреза мгновенно, только когда ведёшь курсор снизу к адресной строке или вкладкам. Убрал курсор — через полсекунды снова большая. (В 0.4.5 она почти всегда выглядела как обычная.)</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="release" id="v0.4.5">
-    <div class="meta"><span class="ver">0.4.5</span><span class="date">26 ноября 2026</span><span class="tag new">последняя</span></div>
+    <div class="meta"><span class="ver">0.4.5</span><span class="date">26 ноября 2026</span></div>
     <div>
       <h2>Большая чёлка не мешает</h2>
       <ul>
-        <li><b>Большая чёлка больше не закрывает окна.</b> Когда под ней окно — адресная строка и вкладки браузера, поиск Spotify, терминал, — она плавно поднимается до высоты выреза. Сверху пусто — снова большая. Работает с любыми приложениями.</li>
+        <li><b>Большая чёлка больше не закрывает окна</b> — поднимается до высоты выреза, чтобы не мешать адресной строке и вкладкам (в 0.4.6 — по курсору).</li>
       </ul>
       <p class="how">Где найти: <b>Нибл → Размер чёлки и Нибла → Не закрывать окна</b> (включено).</p>
     </div>
