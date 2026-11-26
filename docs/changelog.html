@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nibl — что нового</title>
+<meta name="description" content="Все изменения Нибла по версиям: что появилось и как этим пользоваться.">
+<meta name="theme-color" content="#0d0b14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column; each version a block with a date rail on the left */
+:root {
+  --bg: #0d0b14; --panel: #16131f; --line: #2a2540; --fg: #ece8f7; --muted: #a49cbf; --dim: #6f6790;
+  --teal: #5ee6df; --lav: #b8a4ff; --warn: #ffd479;
+  --display: "Unbounded", "Golos Text", system-ui, sans-serif;
+  --body: "Golos Text", -apple-system, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); padding-inline: 16px; padding-block: 0 64px; }
+.wrap { max-width: 760px; margin: 0 auto; }
+nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
+.logo { font: 800 20px var(--display); color: var(--fg); text-decoration: none; letter-spacing: -.01em; }
+.logo i { font-style: normal; color: var(--teal); }
+nav a.btn { font: 600 14px var(--body); color: #0d0b14; background: var(--teal); border-radius: 999px; padding: 8px 16px; text-decoration: none; }
+h1 { font: 800 clamp(30px, 6vw, 48px)/1.05 var(--display); margin: 32px 0 12px; text-wrap: balance; }
+.lead { color: var(--muted); margin: 0 0 28px; max-width: 60ch; }
+.update { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 14px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); color: var(--muted); font-size: 14px; margin-bottom: 40px; }
+.update code { font: 13px var(--mono); color: var(--fg); background: rgba(255,255,255,.06); padding: 4px 8px; border-radius: 8px; overflow-wrap: anywhere; }
+.release { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 8px 28px; padding-block: 28px; border-top: 1px solid var(--line); }
+@media (max-width: 600px) { .release { grid-template-columns: minmax(0, 1fr); } }
+.meta { display: flex; flex-direction: column; gap: 6px; }
+.ver { font: 600 22px var(--display); }
+.date { font: 13px var(--mono); color: var(--dim); }
+.tag { align-self: flex-start; font: 600 11px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; border: 1px solid currentColor; color: var(--lav); }
+.tag.new { color: #0d0b14; background: var(--warn); border-color: var(--warn); }
+.release h2 { font: 600 20px/1.3 var(--display); margin: 0 0 10px; text-wrap: balance; }
+.release ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.release li b { color: var(--fg); }
+.release li { color: var(--muted); }
+.release .how { margin-top: 12px; font-size: 14px; color: var(--dim); }
+.release .how b { color: var(--teal); font-weight: 600; }
+footer { border-top: 1px solid var(--line); padding-top: 20px; color: var(--dim); font-size: 13px; }
+footer a { color: var(--muted); }
+a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a class="logo" href="./">N<i>\</i>BL</a><a class="btn" href="./#install">Установить</a></nav>
+
+  <h1>Что нового в Нибле</h1>
+  <p class="lead">Все изменения по версиям — что появилось и где это найти. После обновления Нибл и сам покажет новое прямо в чёлке: в крыле появится «новое ✨».</p>
+
+  <div class="update">
+    <span>Обновиться: с 0.4.2 — кнопкой «Обновить» в чёлке; с более старых — командой</span>
+    <code>curl -fsSL https://raw.githubusercontent.com/Ryuichi-Takada-lab/nibl-dist/main/install.sh | bash</code>
+  </div>
+
+  <section class="release" id="v0.4.3">
+    <div class="meta"><span class="ver">0.4.3</span><span class="date">26 ноября 2026</span><span class="tag new">последняя</span></div>
+    <div>
+      <h2>Энергия от зарядки, полка файлов, заметки по файлам</h2>
+      <ul>
+        <li><b>Энергия от зарядки.</b> Подключи зарядку после двух и больше часов без неё — Нибла переполнит энергия: яркое свечение и настоящие молнии вокруг. Пока Mac заряжается, внутри Нибла светится молния; она повторяет его форму и цвет. Переподключил раньше — без всплеска.</li>
+        <li><b>Полка файлов.</b> Перетащи файл к чёлке — она откроется на полке. Файл лежит под рукой: вытащи его в любое приложение, открой двойным щелчком, отправь по AirDrop или покажи в Finder.</li>
+        <li><b>Трек одним движением.</b> Быстро проведи курсором вдоль всей закрытой чёлки: вправо — следующий трек, влево — предыдущий.</li>
+        <li><b>Каждая заметка — свой файл.</b> В Nibl (<code>~/.nibl/notes/</code>) или в папке Nibl хранилища Obsidian. Старый общий файл один раз раскладывается по отдельным; в Заметках Apple каждая заметка тоже отдельная.</li>
+        <li><b>Заметки как дела.</b> Фильтр «Все / Дела / Готово», полоска прогресса, «Убрать готовые».</li>
+        <li><b>Свой порядок вкладок.</b> Перетащи значок вкладки в чёлке или поменяй стрелками.</li>
+        <li><b>«Что нового» на устройстве.</b> После обновления Нибл показывает изменения анимированными карточками прямо в чёлке.</li>
+      </ul>
+      <p class="how">Где найти: <b>Настройки → Общие</b> — жесты, порядок вкладок, «Что нового в этой версии».</p>
+    </div>
+  </section>
+
+  <section class="release" id="v0.4.2">
+    <div class="meta"><span class="ver">0.4.2</span><span class="date">26 ноября 2026</span></div>
+    <div>
+      <h2>Буфер обмена и автообновления</h2>
+      <ul>
+        <li><b>История буфера обмена.</b> Вкладка в чёлке со всем, что ты копировал: текст и картинки, поиск, закрепить, удалить. Щелчок — снова в буфере. Пароли не запоминаются, история живёт только в памяти.</li>
+        <li><b>Нибл обновляется сам.</b> Когда выходит новая версия, в открытой чёлке появляется «Вышел Nibl … · Обновить». Ставит только версию, подписанную нами.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="release" id="v0.4.1">
+    <div class="meta"><span class="ver">0.4.1</span><span class="date">26 ноября 2026</span></div>
+    <div>
+      <h2>Стеклянная чёлка</h2>
+      <ul>
+        <li><b>Жидкое стекло.</b> Ползунок «Прозрачность чёлки»: от чёрной до прозрачного стекла, для закрытой и открытой чёлки.</li>
+        <li><b>Все настройки в чёлке.</b> «Нибл» — внешний вид и сам Нибл, «Настройки» — разделы строкой. Правый щелчок по чёлке открывает настройки.</li>
+        <li><b>Щелчок по Ниблу</b> попадает точно при любом размере чёлки.</li>
+        <li>Свечение вокруг Нибла круглое, без квадрата.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="release" id="v0.3.1">
+    <div class="meta"><span class="ver">0.3.1</span><span class="date">26 ноября 2026</span></div>
+    <div>
+      <h2>Скучать тоже можно весело</h2>
+      <ul>
+        <li>Когда ничего не происходит, Нибл играет на геймпаде, смотрит грустное видео, читает книжку, подбрасывает каплю или зевает.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="release" id="v0.3.0">
+    <div class="meta"><span class="ver">0.3.0</span><span class="date">26 ноября 2026</span></div>
+    <div>
+      <h2>Живой питомец</h2>
+      <ul>
+        <li><b>Появление:</b> маленькая капля приползает бочком из правого угла экрана и затекает в чёлку.</li>
+        <li><b>Чёлка «как вырез»</b> по умолчанию, закрывается сама, когда уводишь курсор.</li>
+        <li><b>Погладь Нибла</b> — быстро поводи курсором туда-обратно: сердечки. Щелчок — мурчит.</li>
+        <li>Цвет под обложку трека, диктовка без рук, Нибл здоровается при запуске и когда ты вернулся.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="release" id="v0.2">
+    <div class="meta"><span class="ver">0.2.x</span><span class="date">25–26 ноября 2026</span></div>
+    <div>
+      <h2>Голос, звуки, размер</h2>
+      <ul>
+        <li><b>Диктовка:</b> подержи правый ⌥ — Нибл слушает (эмоция «слушает тебя»), текст уходит агенту или в открытое приложение.</li>
+        <li><b>Мягкие «Капли»</b> вместо всех звуков.</li>
+        <li><b>Размер чёлки и Нибла</b>, приветствие, новые эмоции «здоровается» и «приветствует».</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Нибл · бесплатная бета · <a href="./">на главную</a> · <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases">все выпуски на GitHub</a></footer>
+</div>
+</body>
+</html>
