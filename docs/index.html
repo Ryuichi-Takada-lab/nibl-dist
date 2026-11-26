@@ -284,6 +284,54 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
 .js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; } }
+
+/* ---- NotchNook-like structure: promo strip, badges, what's new, compare, support, footer ---- */
+.promo { position: relative; z-index: 5; margin: 76px auto 0; width: min(100% - 32px, 760px); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 14px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); font-size: 14px; color: var(--muted); text-align: center; }
+.promo b { color: var(--fg); font-weight: 600; }
+.promo .tag { font: 600 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: #0d0b14; background: var(--teal); border-radius: 999px; padding: 5px 9px; }
+.promo a { color: var(--teal); text-decoration: none; font-weight: 600; }
+.app-id { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.app-icon { width: 64px; height: 64px; border-radius: 16px; background: radial-gradient(circle at 35% 30%, #fff8 0 8%, transparent 9%), radial-gradient(circle at 50% 62%, #ffe27a, #f3a93b 60%, #b8641c); box-shadow: inset 0 -6px 14px #0004, 0 10px 30px -8px #f3a93b99; position: relative; flex: none; }
+.app-icon::after { content: ""; position: absolute; left: 22%; right: 22%; top: 44%; height: 14%; background: radial-gradient(circle 3.5px at 22% 50%, #1b1208 96%, transparent), radial-gradient(circle 3.5px at 78% 50%, #1b1208 96%, transparent); }
+.badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge { font: 600 11px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1px solid currentColor; }
+.badge.b-free { color: var(--teal); } .badge.b-beta { color: var(--lav); } .badge.b-new { color: #0d0b14; background: var(--warn); border-color: var(--warn); }
+.cta .textlink { color: var(--fg); text-decoration: none; font-weight: 600; align-self: center; padding: 8px 4px; }
+.cta .textlink:hover { color: var(--teal); }
+.fine { margin-top: 16px; color: var(--dim); font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.fine a { color: var(--muted); }
+.new-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; }
+.new-grid .card:first-child { grid-row: span 2; }
+@media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } .new-grid .card:first-child { grid-column: 1 / -1; grid-row: auto; } }
+@media (max-width: 560px) { .new-grid { grid-template-columns: minmax(0,1fr); } }
+.glass-demo { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 10; max-width: 100%; background: repeating-linear-gradient(90deg, #ff5a5a 0 12%, #ffd45a 12% 24%, #5ad97a 24% 36%, #4a8dff 36% 48%, #ff5aa8 48% 60%, #ffffff 60% 72%); }
+.glass-demo .notch-glass { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 72%; height: 64%; border-radius: 0 0 26px 26px; border: 1px solid rgba(255,255,255,.35); border-top: 0; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 18px 40px -16px #0008; backdrop-filter: blur(calc(var(--g) * 14px)) saturate(170%); -webkit-backdrop-filter: blur(calc(var(--g) * 14px)) saturate(170%); background: rgba(13,11,20, calc(1 - var(--g))); transition: background .2s; display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; }
+.glass-demo .cam { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 26%; height: 14%; background: #000; border-radius: 0 0 12px 12px; }
+.glass-demo .row { margin-top: 18%; height: 12%; border-radius: 8px; background: rgba(255,255,255,.14); }
+.glass-demo .row.s { width: 64%; margin-top: 0; }
+.glass-ctl { display: flex; align-items: center; gap: 12px; color: var(--muted); font: 500 13px var(--mono); }
+.glass-ctl input { flex: 1; min-width: 0; accent-color: var(--teal); }
+.compare-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 24px; background: var(--panel); }
+.compare { width: 100%; border-collapse: collapse; min-width: 520px; font-size: 15px; }
+.compare th, .compare td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--line); }
+.compare tr:last-child td { border-bottom: 0; }
+.compare th { font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+.compare th:nth-child(3), .compare td:nth-child(3) { background: rgba(94,230,223,.06); }
+.compare td:nth-child(n+2) { text-align: center; width: 22%; }
+.compare th:nth-child(n+2) { text-align: center; }
+.compare .y { color: var(--teal); font-weight: 700; } .compare .n { color: var(--dim); }
+.compare-note { color: var(--dim); font-size: 13px; margin-top: 12px; }
+.support { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding: clamp(22px, 4vw, 36px); border-radius: 28px; border: 1px solid var(--line); background: linear-gradient(135deg, rgba(124,108,240,.16), rgba(94,230,223,.08)); }
+.support h2 { font-size: clamp(22px, 3vw, 30px); }
+.support p { color: var(--muted); margin-top: 6px; }
+footer .cols { width: 100%; display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 24px; padding-block: 8px 24px; text-align: left; }
+footer .cols h3 { font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+footer .cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+footer .cols a { color: var(--muted); text-decoration: none; } footer .cols a:hover { color: var(--fg); }
+footer .letter { color: var(--muted); max-width: 32ch; }
+footer .wordmark { width: 100%; align-self: stretch; font: 700 clamp(64px, 16vw, 200px)/.9 var(--display); letter-spacing: -.02em; color: rgba(184,164,255,.08); text-align: center; margin-top: 12px; user-select: none; }
+footer .wordmark i { font-style: normal; color: rgba(94,230,223,.14); }
+@media (max-width: 760px) { footer .cols { grid-template-columns: 1fr 1fr; } footer .cols > div:first-child { grid-column: 1 / -1; } }
 </style>
 </head>
 <body>
@@ -293,27 +341,32 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
   <div class="container">
     <a class="logo" href="#top" aria-label="N\BL — наверх">N<i>\</i>BL</a>
     <ul>
+      <li><a href="#new">Новое</a></li>
       <li><a href="#demo">Как работает</a></li>
       <li><a href="#moods">Настроения</a></li>
       <li><a href="#features">Что умеет</a></li>
       <li><a href="#terminal">Терминал</a></li>
-      <li><a href="#soon">Скоро</a></li>
+      <li><a href="#compare">Сравнение</a></li>
       <li><a href="#help">Помощь</a></li>
     </ul>
     <a class="btn primary small" href="#install">Установить</a>
   </div>
 </nav>
 
+<div class="promo" role="note"><span class="tag">Новое</span><span><b>Nibl 0.4.1 — жидкое стекло.</b> Чёлка становится прозрачной, как панели macOS.</span><a href="#new">Что нового →</a></div>
+
 <header class="hero" id="top">
   <div class="hero-grid">
     <div>
+      <div class="app-id"><span class="app-icon" role="img" aria-label="Значок Nibl"></span><div class="badges"><span class="badge b-free">Бесплатно</span><span class="badge b-beta">Бета</span><span class="badge b-new">Новое</span></div></div>
       <h1>Капля <span class="wax">воска</span>, которая живёт в&nbsp;чёлке твоего Mac</h1>
       <p class="lead">Нибл показывает, чем заняты <b>Claude Code и Codex</b>, спрашивает за них разрешения, <b>танцует под музыку</b> и хранит быстрые заметки. Он перетекает из настроения в настроение — и всегда знает, что происходит.</p>
       <div class="cta">
         <a class="btn primary" href="#install">Установить бесплатно</a>
-        <a class="btn ghost" href="#demo">Посмотреть, как работает</a>
+        <a class="btn ghost" href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.4.1.zip">Скачать .zip</a>
+        <a class="textlink" href="#demo">Посмотреть, как работает →</a>
       </div>
-      <div class="req"><span class="pill">Mac с M1 и новее</span><span class="pill">macOS 15+</span><span class="pill">бета 0.3.1 · живой питомец</span></div>
+      <div class="fine"><span>Версия 0.4.1</span><span>·</span><span>macOS 15 и новее</span><span>·</span><span>Mac с Apple M1 и новее</span><span>·</span><a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest">Что нового</a></div>
     </div>
     <div class="stage" id="heroStage" aria-label="Нибл: капля воска, которая меняет настроение">
       <canvas id="heroWax"></canvas>
@@ -323,6 +376,47 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
   </div>
   <div class="scroll-hint">листай ↓</div>
 </header>
+
+<section class="section" id="new">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">что нового · 0.4.1</div>
+      <h2>Твоя чёлка — теперь из стекла</h2>
+      <p>Нибл научился быть прозрачным. И все его настройки переехали прямо в чёлку.</p>
+    </div>
+    <div class="new-grid">
+      <article class="card reveal">
+        <div class="eyebrow">жидкое стекло</div>
+        <h3>От чёрной до прозрачной — одним ползунком</h3>
+        <p>Закрытая и открытая чёлка становятся стеклом, как панели macOS: сквозь них видно обои и окна. Подвигай ползунок.</p>
+        <div class="vis" style="display:flex;flex-direction:column;gap:12px">
+          <div class="glass-demo" id="glassDemo" style="--g:.85"><div class="notch-glass"><div class="row"></div><div class="row s"></div></div><div class="cam"></div></div>
+          <label class="glass-ctl" for="glassRange"><span>Прозрачность</span><input type="range" id="glassRange" min="0" max="100" value="85"><b id="glassVal">85%</b></label>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="eyebrow">настройки</div>
+        <h3>Все настройки — в чёлке</h3>
+        <p>«Нибл» — как выглядят чёлка и сам Нибл. «Настройки» — агенты, голос, звуки, терминал, заметки. Правый щелчок по чёлке открывает их сразу.</p>
+      </article>
+      <article class="card reveal">
+        <div class="eyebrow">точнее</div>
+        <h3>Щелчок попадает в Нибла</h3>
+        <p>При любом размере чёлки: ткнул — он мурлычет, а не раскрывает панель.</p>
+      </article>
+      <article class="card reveal">
+        <div class="eyebrow">чище</div>
+        <h3>Без квадрата вокруг</h3>
+        <p>Свечение Нибла теперь круглое, лужица под ним не обрезается.</p>
+      </article>
+      <article class="card reveal">
+        <div class="eyebrow">мелочи</div>
+        <h3>Значки отзываются</h3>
+        <p>Наведи на вкладку — значок чуть подрастёт, чёлка не дёргается.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
 <section class="section demo" id="demo">
   <div class="container">
@@ -340,7 +434,7 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
           <div class="wing r"><span id="wingText">ждёт</span></div>
         </div>
         <div class="panel" id="panel">
-          <div class="ptabs"><span data-t="agents" class="on">Агенты</span><span data-t="music">Музыка</span><span data-t="notes">Заметки</span><span data-t="nibl">Нибл</span><span data-t="sys">Система</span></div>
+          <div class="ptabs"><span data-t="agents" class="on">Агенты</span><span data-t="music">Музыка</span><span data-t="notes">Заметки</span><span data-t="nibl">Нибл</span><span data-t="sys">Настройки</span></div>
           <div class="pview on" data-v="agents">
             <div class="row"><span class="mini" style="--c:#fcee0a"></span><span class="t"><b>claude · ~/shop-app</b><i>? Bash rm -rf build/</i></span><span class="yn"><span class="yes" id="yesBtn">Да</span><span>Нет</span></span></div>
             <div class="row"><span class="mini" style="--c:#2ee6a6"></span><span class="t"><b>codex · ~/landing</b><i>✎ hero.tsx</i></span></div>
@@ -472,6 +566,35 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
   </div>
 </section>
 
+<section class="section" id="compare">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">сравнение</div>
+      <h2>Обычная чёлка или чёлка с Ниблом?</h2>
+      <p>Вырез под камерой есть у каждого MacBook. Только у одного в нём живёт капля воска.</p>
+    </div>
+    <div class="compare-wrap reveal">
+      <table class="compare">
+        <thead><tr><th>Что умеет</th><th>Обычная чёлка</th><th>С Ниблом</th></tr></thead>
+        <tbody>
+          <tr><td>Цена</td><td class="n">—</td><td><b>Бесплатно</b></td></tr>
+          <tr><td>Видно, чем заняты Claude Code и Codex</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Ответить агенту «Да / Нет» не уходя из окна</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Лимиты Claude на 5 часов и неделю</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Музыка: трек, обложка, танцы в такт</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Быстрые заметки, в том числе в Obsidian</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Диктовка: подержи правый ⌥</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Жидкое стекло и выбор прозрачности</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>26 настроений и живой питомец</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Нибл в терминале над строкой ввода</td><td class="n">—</td><td class="y">✓</td></tr>
+          <tr><td>Прячет камеру</td><td class="y">✓</td><td class="y">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">Нибл работает на Mac с Apple M1 и новее, macOS 15 и новее. На Mac без выреза он живёт в такой же капсуле у верхнего края экрана.</p>
+  </div>
+</section>
+
 <section class="section" id="terminal" style="background:linear-gradient(transparent, var(--bg2) 20%, var(--bg2) 80%, transparent)">
   <div class="container">
     <div class="section-head reveal">
@@ -576,8 +699,8 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 
       <div id="way-zip" role="tabpanel" aria-labelledby="tab-zip" hidden>
         <ol class="steps">
-          <li><div><p>Скачай архив: <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.3.1.zip">Nibl-0.3.1.zip</a> (1,7 МБ). Он попадёт в «Загрузки». Если архив тебе прислали — бери его.</p></div></li>
-          <li><div><p>Дважды нажми на архив — рядом появится папка <b>Nibl-0.3.1</b>.</p></div></li>
+          <li><div><p>Скачай архив: <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest/download/Nibl-0.4.1.zip">Nibl-0.4.1.zip</a> (1,9 МБ). Он попадёт в «Загрузки». Если архив тебе прислали — бери его.</p></div></li>
+          <li><div><p>Дважды нажми на архив — рядом появится папка <b>Nibl-0.4.1</b>.</p></div></li>
           <li><div><p>Открой её и перетащи <b>Nibl</b> в <b>«Программы»</b> — эта папка есть слева в окне Finder.</p></div></li>
           <li><div><p>Открой «Программы» и дважды нажми на Nibl. macOS скажет, что не может проверить приложение. Нажми <b>«Готово»</b> — не «Переместить в корзину».</p><p class="note warn">Так macOS встречает все приложения не из App Store. Нибла там пока нет.</p></div></li>
           <li><div><p>Открой <b>«Системные настройки»</b> → <b>«Конфиденциальность и безопасность»</b> и пролистай вниз до раздела «Безопасность».</p></div></li>
@@ -604,17 +727,26 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">помощь</div>
-      <h2>Если что-то пошло не так</h2>
+      <h2>Вопросы</h2>
     </div>
     <div class="faq reveal">
       <details><summary>«Nibl needs an Apple Silicon Mac»</summary><div><p>У тебя Mac с процессором Intel. На нём Нибл пока не работает.</p></div></details>
       <details><summary>«Nibl needs macOS 15 or newer»</summary><div><p>Обнови macOS («Системные настройки» → «Основные» → «Обновление ПО») и запусти команду снова.</p></div></details>
       <details><summary>«Couldn't reach GitHub»</summary><div><p>Нет интернета или GitHub недоступен. Проверь подключение (или VPN) и повтори. Можно поставить через архив.</p></div></details>
       <details><summary>«Nibl повреждён»</summary><div><p>Файлы приложения изменены или архив скачался не целиком. Удали Нибла и поставь заново одной командой.</p></div></details>
-      <details><summary>Нибла не видно</summary><div><p>Открой Nibl в «Программах». С двумя мониторами выбери экран в панели: «Система» → «Экран».</p></div></details>
-      <details><summary>Горячие клавиши не работают</summary><div><p>В панели Нибла открой «Систему» → «Разрешить» и включи Nibl в списке «Универсальный доступ».</p></div></details>
+      <details><summary>Нибла не видно</summary><div><p>Открой Nibl в «Программах». С двумя мониторами выбери экран в панели: «Настройки» → «Общие» → «Экран».</p></div></details>
+      <details><summary>Горячие клавиши не работают</summary><div><p>В панели Нибла открой «Настройки» → «Общие» → «Разрешить» и включи Nibl в списке «Универсальный доступ».</p></div></details>
       <details><summary>Как удалить Нибла</summary><div style="display:flex;flex-direction:column;gap:12px"><p>Удаляй командой, даже если ставил из архива: она уберёт всё, что Нибл подключил к Claude Code, Codex и Терминалу, и вернёт прежние настройки. Заметки останутся в <code>~/.nibl/notes.md</code>.</p>
         <div class="cmd"><pre id="c-remove">curl -fsSL https://raw.githubusercontent.com/Ryuichi-Takada-lab/nibl-dist/main/install.sh | bash -s -- --uninstall</pre><button type="button" data-copy="c-remove">Скопировать</button></div></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="support reveal">
+      <div><h2>Нужна помощь?</h2><p>Не ставится, не видно Нибла или есть идея — напиши, разберёмся.</p></div>
+      <a class="btn ghost" href="https://github.com/Ryuichi-Takada-lab/nibl-dist/issues">Написать на GitHub</a>
     </div>
   </div>
 </section>
@@ -627,9 +759,14 @@ footer .container { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 
 <footer>
   <div class="container">
-    <span><span class="logo" style="font-size:15px">N<i>\</i>BL</span> · © 2026 · бета 0.3.1 · пользуясь Ниблом, ты принимаешь лицензию из архива</span>
-    <span>Работает с Claude Code и Codex, но не создан Anthropic или OpenAI и не связан с ними</span>
-    <a href="https://github.com/Ryuichi-Takada-lab/nibl-dist">Установщик на GitHub</a>
+    <div class="cols">
+      <div><span class="logo" style="font-size:18px">N<i>\</i>BL</span><p class="letter">Капля воска в чёлке твоего Mac. Работает с Claude Code и Codex, но не создан Anthropic или OpenAI и не связан с ними.</p></div>
+      <div><h3>Нибл</h3><ul><li><a href="#new">Что нового</a></li><li><a href="#demo">Как работает</a></li><li><a href="#moods">Настроения</a></li><li><a href="#compare">Сравнение</a></li></ul></div>
+      <div><h3>Поставить</h3><ul><li><a href="#install">Установка</a></li><li><a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases/latest">Скачать .zip</a></li><li><a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/releases">Все версии</a></li></ul></div>
+      <div><h3>Помощь</h3><ul><li><a href="#help">Вопросы</a></li><li><a href="https://github.com/Ryuichi-Takada-lab/nibl-dist/issues">Написать</a></li><li><a href="https://github.com/Ryuichi-Takada-lab/nibl-dist">Установщик на GitHub</a></li></ul></div>
+    </div>
+    <span>© 2026 · бета 0.4.1 · пользуясь Ниблом, ты принимаешь лицензию из архива</span>
+    <div class="wordmark" aria-hidden="true">N<i>\</i>BL</div>
   </div>
 </footer>
 
@@ -965,6 +1102,11 @@ const navEl = $('nav'); const onScroll = () => navEl.classList.toggle('solid', s
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('in')), 6000);
+</script>
+
+<script>
+(function(){ var r=document.getElementById('glassRange'), d=document.getElementById('glassDemo'), v=document.getElementById('glassVal');
+  if(!r||!d) return; function u(){ d.style.setProperty('--g', r.value/100); v.textContent=r.value+'%'; } r.addEventListener('input',u); u(); })();
 </script>
 </body>
 </html>
