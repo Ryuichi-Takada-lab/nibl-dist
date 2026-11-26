@@ -828,8 +828,9 @@ void main(){
   float rim=pow(1.-n.z,2.);
   float sp=pow(clamp(dot(reflect(-L,n),vec3(0.,0.,1.)),0.,1.),28.);
   vec3 c=mix(deep,col,.35+.65*dif)+sp*.85+rim*col*.35;
-  vec2 uv=p/res;float edge=min(min(uv.x,1.-uv.x),min(uv.y,1.-uv.y));
-  float glow=smoothstep(.3,1.,f)*(1.-a)*.4*smoothstep(0.,.22,edge);
+  // a short glow that fades in a circle around him — never along the canvas edges
+  vec2 q=(p-res*.5)/(.5*min(res.x,res.y));
+  float glow=smoothstep(.62,1.,f)*(1.-a)*.4*(1.-smoothstep(.62,.95,length(q)));
   gl_FragColor=vec4(c*a+col*glow,a+glow);
 }`;
 
