@@ -34,9 +34,9 @@ code { font-family: var(--mono); font-size: .86em; background: rgba(184,164,255,
 kbd { font-family: var(--body); font-size: .88em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: 0 7px; background: var(--panel); white-space: nowrap; }
 .container { width: min(1120px, 100% - 32px); margin-inline: auto; }
 .eyebrow { font: 600 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--lav); }
-.section { padding-block: clamp(72px, 12vw, 140px); }
-.section-head { display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin-bottom: clamp(32px, 6vw, 56px); }
-.section-head h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 600; line-height: 1.08; letter-spacing: -.01em; }
+.section { padding-block: clamp(40px, 6vw, 76px); }
+.section-head { display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin-bottom: clamp(20px, 3.5vw, 32px); }
+.section-head h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 600; line-height: 1.08; letter-spacing: -.01em; }
 .section-head p { color: var(--muted); font-size: clamp(16px, 2.2vw, 19px); max-width: 60ch; }
 
 /* Nav */
@@ -57,7 +57,7 @@ nav.top ul a:hover { color: var(--fg); }
 @media (max-width: 760px) { nav.top ul { display: none; } nav.top .btn { margin-left: auto; } }
 
 /* Hero: the lava lamp */
-.hero { position: relative; min-height: min(100svh, 940px); display: grid; place-items: center; overflow: hidden; padding-top: 64px; }
+.hero { position: relative; min-height: min(78svh, 720px); display: grid; place-items: center; overflow: hidden; padding-top: 64px; }
 .hero::before { content: ""; position: absolute; inset: 0; background:
   radial-gradient(60% 50% at 50% 60%, color-mix(in srgb, var(--mood) 18%, transparent), transparent 70%),
   radial-gradient(40% 40% at 80% 10%, rgba(124,108,240,.18), transparent 70%); transition: background 1s; pointer-events: none; }
@@ -332,6 +332,44 @@ footer .letter { color: var(--muted); max-width: 32ch; }
 footer .wordmark { width: 100%; align-self: stretch; font: 700 clamp(64px, 16vw, 200px)/.9 var(--display); letter-spacing: -.02em; color: rgba(184,164,255,.08); text-align: center; margin-top: 12px; user-select: none; }
 footer .wordmark i { font-style: normal; color: rgba(94,230,223,.14); }
 @media (max-width: 760px) { footer .cols { grid-template-columns: 1fr 1fr; } footer .cols > div:first-child { grid-column: 1 / -1; } }
+
+/* updates: the latest version large, the earlier ones as a compact list */
+.upd { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .upd { grid-template-columns: minmax(0, 1fr); } }
+.upd-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.upd-ver { font: 600 13px var(--mono); color: var(--teal); }
+.upd-date { font: 12px var(--mono); color: var(--dim); }
+.upd-latest { border-color: rgba(94,230,223,.35); background: linear-gradient(160deg, rgba(94,230,223,.08), var(--panel) 60%); }
+.upd-latest h3 { font-size: clamp(22px, 3vw, 28px); }
+.upd-latest ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; color: var(--muted); font-size: 15px; }
+.upd-latest li b { color: var(--fg); }
+.upd-list { display: flex; flex-direction: column; gap: 8px; }
+.upd-item { padding: 12px 16px; gap: 4px; display: grid; grid-template-columns: 92px minmax(0, 1fr); column-gap: 12px; align-items: baseline; border-radius: 16px; }
+.upd-item .upd-top { grid-row: span 2; }
+@media (max-width: 560px) { .upd-item { grid-template-columns: minmax(0, 1fr); } .upd-item .upd-top { grid-row: auto; } }
+.upd-item h3 { font-size: 16px; }
+.upd-item p { font-size: 13.5px; }
+.upd-glass { grid-column: 1 / -1; }
+.upd-glass .glass-demo { aspect-ratio: 16 / 6; }
+.upd-more { margin-top: 20px; text-align: center; }
+
+/* features: every function at a glance */
+.feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 1000px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .feats { grid-template-columns: minmax(0, 1fr); } }
+.feat { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); min-width: 0; }
+.feat-i { flex: none; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: rgba(94,230,223,.1); color: var(--teal); font-size: 16px; }
+.feat b { display: block; font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.feat span:not(.feat-i) { color: var(--muted); font-size: 13.5px; line-height: 1.4; }
+
+/* compact moods: a dense chip per mood; the details show in the big Nibl on the left */
+.mood-grid { grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 8px; }
+.mood { flex-direction: row; align-items: center; padding: 8px 10px; gap: 9px; border-radius: 12px; }
+.mood .blob { width: 22px; height: 17px; flex: none; }
+.mood b { font-size: 13.5px; }
+.mood span { display: none; }
+.mood-stage { max-height: 460px; }
+.feat span:not(.feat-i) { display: block; line-height: 1.4; }
 </style>
 </head>
 <body>
@@ -341,7 +379,7 @@ footer .wordmark i { font-style: normal; color: rgba(94,230,223,.14); }
   <div class="container">
     <a class="logo" href="#top" aria-label="N\BL — наверх">N<i>\</i>BL</a>
     <ul>
-      <li><a href="changelog.html">Новое</a></li>
+      <li><a href="#new">Обновления</a></li>
       <li><a href="#demo">Как работает</a></li>
       <li><a href="#moods">Настроения</a></li>
       <li><a href="#features">Что умеет</a></li>
@@ -374,47 +412,35 @@ footer .wordmark i { font-style: normal; color: rgba(94,230,223,.14); }
       <div class="poke-hint" id="pokeHint">ткни в каплю</div>
     </div>
   </div>
-  <div class="scroll-hint">листай ↓</div>
 </header>
 
 <section class="section" id="new">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">что нового · 0.4.1</div>
-      <h2>Твоя чёлка — теперь из стекла</h2>
-      <p>Нибл научился быть прозрачным. И все его настройки переехали прямо в чёлку.</p>
+      <div class="eyebrow">обновления</div>
+      <h2>Нибл растёт почти каждый день</h2>
+      <p>Новые версии приходят сами: в чёлке появляется «Вышел Nibl … · Обновить», одна кнопка — и готово. После обновления Нибл сам покажет новое анимацией.</p>
     </div>
-    <div class="new-grid">
-      <article class="card reveal">
-        <div class="eyebrow">жидкое стекло</div>
-        <h3>От чёрной до прозрачной — одним ползунком</h3>
-        <p>Закрытая и открытая чёлка становятся стеклом, как панели macOS: сквозь них видно обои и окна. Подвигай ползунок.</p>
-        <div class="vis" style="display:flex;flex-direction:column;gap:12px">
-          <div class="glass-demo" id="glassDemo" style="--g:.85"><div class="notch-glass"><div class="row"></div><div class="row s"></div></div><div class="cam"></div></div>
-          <label class="glass-ctl" for="glassRange"><span>Прозрачность</span><input type="range" id="glassRange" min="0" max="100" value="85"><b id="glassVal">85%</b></label>
-        </div>
+    <div class="upd">
+      <article class="card upd-latest reveal">
+        <div class="upd-top"><span class="badge b-new">последняя</span><span class="upd-ver">0.4.8</span><span class="upd-date">26 ноября</span></div>
+        <h3>Ниблу просторнее</h3>
+        <ul>
+          <li><b>Без квадрата.</b> Когда Нибл мурчит или ластится и растекается, края больше не срезаются.</li>
+          <li><b>Зона шире.</b> Левая сторона чёлки на половину шире — Ниблу есть где двигаться.</li>
+          <li><b>Умная большая чёлка.</b> Поднимается только в браузере, когда тянешься к адресной строке или жмёшь ⌘L.</li>
+          <li><b>Обновления быстрее.</b> Нибл проверяет новые версии раз в полчаса.</li>
+        </ul>
       </article>
-      <article class="card reveal">
-        <div class="eyebrow">настройки</div>
-        <h3>Все настройки — в чёлке</h3>
-        <p>«Нибл» — как выглядят чёлка и сам Нибл. «Настройки» — агенты, голос, звуки, терминал, заметки. Правый щелчок по чёлке открывает их сразу.</p>
-      </article>
-      <article class="card reveal">
-        <div class="eyebrow">точнее</div>
-        <h3>Щелчок попадает в Нибла</h3>
-        <p>При любом размере чёлки: ткнул — он мурлычет, а не раскрывает панель.</p>
-      </article>
-      <article class="card reveal">
-        <div class="eyebrow">чище</div>
-        <h3>Без квадрата вокруг</h3>
-        <p>Свечение Нибла теперь круглое, лужица под ним не обрезается.</p>
-      </article>
-      <article class="card reveal">
-        <div class="eyebrow">мелочи</div>
-        <h3>Значки отзываются</h3>
-        <p>Наведи на вкладку — значок чуть подрастёт, чёлка не дёргается.</p>
-      </article>
+      <div class="upd-list">
+        <article class="card upd-item reveal"><div class="upd-top"><span class="upd-ver">0.4.7</span></div><h3>Размер сразу и без рамки</h3><p>Размер чёлки и другие настройки меняются в ту же секунду; свечение вокруг Нибла — мягкий ореол.</p></article>
+        <article class="card upd-item reveal"><div class="upd-top"><span class="upd-ver">0.4.5–6</span></div><h3>Большая чёлка не мешает</h3><p>Поднимается до выреза, когда нужна адресная строка или поиск.</p></article>
+        <article class="card upd-item reveal"><div class="upd-top"><span class="upd-ver">0.4.4</span></div><h3>Тексты песен</h3><p>Строка за строкой вместе с песней, как в Spotify. Правый ⇧ дважды — буфер обмена.</p></article>
+        <article class="card upd-item reveal"><div class="upd-top"><span class="upd-ver">0.4.3</span></div><h3>Энергия и полка файлов</h3><p>Молнии при зарядке, полка для файлов, каждая заметка — отдельный файл.</p></article>
+        <article class="card upd-item reveal"><div class="upd-top"><span class="upd-ver">0.4.2</span></div><h3>Буфер обмена и автообновления</h3><p>История скопированного и обновление одной кнопкой.</p></article>
+      </div>
     </div>
+    <p class="upd-more reveal"><a class="btn ghost" href="changelog.html">Все изменения по версиям →</a></p>
   </div>
 </section>
 
@@ -486,82 +512,26 @@ footer .wordmark i { font-style: normal; color: rgba(94,230,223,.14); }
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">что умеет</div>
-      <h2>Маленький, но всё время при деле</h2>
-      <p>Всё, что обычно прячется в соседних окнах, теперь в чёлке. И ничего не всплывает само: Нибл открывается, только когда ты на него смотришь.</p>
+      <h2>Всё, что умеет Нибл</h2>
+      <p>Ничего не всплывает само: чёлка открывается, только когда ты на неё смотришь.</p>
     </div>
-    <div class="bento">
-      <article class="card c-agents reveal" id="cardAgents">
-        <div class="eyebrow">агенты</div>
-        <h3>Все сессии Claude Code и Codex — в одном месте</h3>
-        <p>У каждой сессии свой мини-Нибл и строка «что делает». Агент просит разрешение — отвечаешь «Да» или «Нет» прямо из чёлки. Лимиты 5 часов и недели всегда на виду. Перетащи файл на строку — он попадёт в её поле ввода.</p>
-        <div class="vis sess ask-anim">
-          <div class="row"><span class="mini" style="--c:#fcee0a"></span><span class="t"><b>claude · ~/shop-app</b><i>? Bash rm -rf build/</i></span><span class="yn"><span class="yes">Да</span><span>Нет</span></span></div>
-          <div class="row"><span class="mini" style="--c:#2a9df4"></span><span class="t"><b>claude · ~/api</b><i>∘ думает</i></span></div>
-          <div class="row"><span class="mini" style="--c:#2ee6a6"></span><span class="t"><b>codex · ~/landing</b><i>✎ hero.tsx</i></span></div>
-          <div class="limit-row"><span>5ч</span><span class="bar"><i style="--w:58%"></i></span><span>58%</span></div>
-          <div class="limit-row"><span>7д</span><span class="bar"><i style="--w:22%"></i></span><span>22%</span></div>
-        </div>
-      </article>
-      <article class="card c-music reveal">
-        <div class="eyebrow">музыка</div>
-        <h3>Танцует под настоящий бас</h3>
-        <p>Spotify, «Музыка» и любой плеер: обложка, пауза, дальше. Нибл надевает наушники и качается в такт.</p>
-        <div class="vis eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      </article>
-      <article class="card c-notes reveal">
-        <div class="eyebrow">заметки</div>
-        <h3>Мысль за секунду</h3>
-        <p>Правые ⌘ + ⌥ — и пиши. Сохраняется туда, где тебе удобно.</p>
-        <div class="vis chips"><span>Nibl</span><span>Obsidian</span><span>Заметки Apple</span><span>Bear</span></div>
-      </article>
-      <article class="card c-monitor reveal">
-        <div class="eyebrow">монитор</div>
-        <h3>Что съедает Mac</h3>
-        <p>Процессор, память, батарея, сеть и самые прожорливые приложения.</p>
-        <div class="vis tiles"><div><small>CPU</small><b id="cpu">23%</b></div><div><small>Память</small><b id="ram">11,2 ГБ</b></div><div><small>Батарея</small><b>86%</b></div><div><small>Сеть</small><b id="net">↓ 2,4 МБ/с</b></div></div>
-      </article>
-      <article class="card c-keys reveal">
-        <div class="eyebrow">голос · новое</div>
-        <h3>Диктовка без рук</h3>
-        <p>Подержи правый ⌥ секунду — запись пойдёт сама, ⌥ ещё раз — стоп. Нибл спросит, куда отправить: агенту, в приложение, в заметки или скопировать.</p>
-        <div class="vis keys"><span class="key tap" style="min-width:76px">⌥</span><span style="color:#b8f55a;font:600 14px var(--mono)">● слушаю…</span></div>
-      </article>
-      <article class="card c-keys reveal">
-        <div class="eyebrow">горячие клавиши</div>
-        <h3>Дважды правый ⌘</h3>
-        <p>Открыть Нибла, не трогая мышь. Не крадёт фокус: курсор остаётся в терминале.</p>
-        <div class="vis keys"><span class="key tap">⌘</span><span class="key tap2">⌘</span></div>
-      </article>
-      <article class="card c-music reveal">
-        <div class="eyebrow">новое · погладь</div>
-        <h3>Он ластится</h3>
-        <p>Быстро поводи курсором по Ниблу — порозовеет, полетят сердечки. Щёлкни — замурчит.</p>
-        <div class="vis" style="font-size:26px;color:#ff7aa8;letter-spacing:6px">♥ ♥ ♥</div>
-      </article>
-      <article class="card c-notes reveal">
-        <div class="eyebrow">новое · музыка</div>
-        <h3>Цвета обложки</h3>
-        <p>Играет трек с жёлтой обложкой — Нибл жёлтый. С синей — синий.</p>
-        <div class="vis chips"><span style="border-color:#ffd400;color:#ffd400">жёлтая</span><span style="border-color:#4f7dff;color:#7aa2ff">синяя</span><span style="border-color:#ff4a6b;color:#ff7a90">красная</span></div>
-      </article>
-      <article class="card c-monitor reveal">
-        <div class="eyebrow">новое · занят с тобой</div>
-        <h3>Записывает и смотрит кино</h3>
-        <p>Печатаешь в документе — он строчит в блокнотик. Смотришь видео — жуёт попкорн.</p>
-        <div class="vis chips"><span>✎ записывает</span><span>▶ смотрит видео</span></div>
-      </article>
-      <article class="card c-skins reveal">
-        <div class="eyebrow">скины и аксессуары</div>
-        <h3>Воск, неон, перламутр, хром</h3>
-        <p>Меняется только материал — характер тот же. Чёлка — «как вырез» ровно под камерой, обычная или большая, и закрывается сама, когда уводишь курсор. При запуске и когда ты вернулся, Нибл здоровается. Под музыку: мягкие наушники, круглые очки или восковые ноты. А ещё Нибл показывает заряд батареи: цвет вытекает сверху, когда Mac садится.</p>
-        <div class="vis skins"><i class="wax" title="воск"></i><i class="neon" title="неон"></i><i class="pearl" title="перламутр"></i><i class="chrome" title="хром"></i></div>
-      </article>
-      <article class="card c-quiet reveal">
-        <div class="eyebrow">тихо и бережно</div>
-        <h3>Никаких всплывающих окон</h3>
-        <p>Нибл открывается от наведения и закрывается одним щелчком. Не забирает фокус. Без аккаунтов и аналитики, звук для танца не записывается. Звуки — тихие «капли», и их можно выключить. Рисуется на видеокарте и в покое почти не тратит батарею.</p>
-        <div class="vis chips"><span>без аккаунта</span><span>без аналитики</span><span>звук не записывается</span><span>ru / en</span></div>
-      </article>
+    <div class="feats">
+      <div class="feat reveal"><span class="feat-i">◉</span><div><b>Агенты в чёлке</b><span>Все сессии Claude Code и Codex, их вопросы — «Да / Нет» не уходя из окна</span></div></div>
+      <div class="feat reveal"><span class="feat-i">▤</span><div><b>Лимиты Claude</b><span>5 часов и неделя — сколько осталось и когда сброс</span></div></div>
+      <div class="feat reveal"><span class="feat-i">♪</span><div><b>Музыка</b><span>Трек, обложка, управление; Нибл танцует в такт</span></div></div>
+      <div class="feat reveal"><span class="feat-i">❝</span><div><b>Тексты песен</b><span>Строка за строкой вместе с песней, щелчок — перемотка</span></div></div>
+      <div class="feat reveal"><span class="feat-i">⇩</span><div><b>Полка файлов</b><span>Перетащи файл к чёлке — лежит под рукой, AirDrop</span></div></div>
+      <div class="feat reveal"><span class="feat-i">⧉</span><div><b>Буфер обмена</b><span>Всё скопированное, поиск; правый ⇧ дважды</span></div></div>
+      <div class="feat reveal"><span class="feat-i">✎</span><div><b>Заметки и дела</b><span>Каждая заметка — файл; в Nibl или Obsidian</span></div></div>
+      <div class="feat reveal"><span class="feat-i">◎</span><div><b>Диктовка</b><span>Подержи правый ⌥ — текст уйдёт агенту или в приложение</span></div></div>
+      <div class="feat reveal"><span class="feat-i">⚡</span><div><b>Энергия от зарядки</b><span>Молнии при подключении, молния внутри пока заряжается</span></div></div>
+      <div class="feat reveal"><span class="feat-i">◐</span><div><b>Жидкое стекло</b><span>Прозрачность чёлки от чёрной до стекла</span></div></div>
+      <div class="feat reveal"><span class="feat-i">↔</span><div><b>Жесты</b><span>Провёл по правой стороне — следующий трек, с волной</span></div></div>
+      <div class="feat reveal"><span class="feat-i">▭</span><div><b>Монитор</b><span>Процессор, память, батарея, сеть</span></div></div>
+      <div class="feat reveal"><span class="feat-i">♡</span><div><b>Живой питомец</b><span>26 настроений, мурчит, ластится, скучает, здоровается</span></div></div>
+      <div class="feat reveal"><span class="feat-i">⌘</span><div><b>Горячие клавиши</b><span>Правый ⌘ дважды — чёлка, ⌘+⌥ — заметка</span></div></div>
+      <div class="feat reveal"><span class="feat-i">▣</span><div><b>Терминал</b><span>Нибл над строкой ввода Claude Code и статус-бар</span></div></div>
+      <div class="feat reveal"><span class="feat-i">↻</span><div><b>Обновляется сам</b><span>Новая версия — одна кнопка в чёлке</span></div></div>
     </div>
   </div>
 </section>
@@ -628,39 +598,6 @@ footer .wordmark i { font-style: normal; color: rgba(94,230,223,.14); }
         <div><p><b>Тема оболочки и Терминала.</b> Спокойное приглашение zsh или bash и профиль Terminal.app в тех же цветах.</p></div>
         <div><p><b>Выключается так же легко.</b> Отключил — вернулся твой прежний статус-бар и тема, rc-файлы как были.</p></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="soon">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">скоро · что мы делаем дальше</div>
-      <h2>Ниблы рядом — питомцы вместе</h2>
-      <p>Нибл — не программа, а питомец. Когда в той же сети Wi-Fi появляется другой Нибл, твой его замечает: оборачивается, удивляется и машет. С любым Ниблом можно подружиться — рядом или по его ID через интернет.</p>
-    </div>
-    <div class="soon-grid">
-      <div class="reveal">
-        <div class="meet" id="meet">
-          <div class="stage"><canvas id="meetA"></canvas></div>
-          <div class="stage"><canvas id="meetB"></canvas></div>
-          <div class="bub l" id="mbA">Привет, Нибл Пуфик!</div><div class="bub r" id="mbB">Привет, Нибл Кеша!</div>
-          <div class="tagname l">НИБЛ КЕША · 7K3F</div><div class="tagname r">НИБЛ ПУФИК · 2QXD</div>
-        </div>
-        <div class="meet-step" id="meetStep"></div>
-      </div>
-      <div class="soon-list reveal">
-        <div><span>1</span><p><b>У каждого Нибла своё имя и ID.</b> Имя даёшь ты — «Нибл Кеша». ID вроде <code>NIBL-7K3F-Q9XM-2D</code> уникальный и неподделываемый.</p></div>
-        <div><span>2</span><p><b>Встречают друг друга.</b> Сосед появился в сети — поворот, удивление, «Привет, Нибл Пуфик!». Без серверов: всё внутри домашней сети.</p></div>
-        <div><span>3</span><p><b>Дружат.</b> Рядом — по шести одинаковым цифрам на обоих экранах, издалека — по ID. Подписи, короткие фразы, «в гости», танцы под одну музыку, подарки; дружба растёт со временем.</p></div>
-        <div><span>4</span><p><b>Тихо и честно.</b> Незнакомцы видят только имя и настроение, и только если ты включил «Показывать меня рядом». Сообщения шифруются между самими Ниблами.</p></div>
-      </div>
-    </div>
-    <div class="platforms reveal">
-      <div class="now"><small>сейчас</small><b>Mac</b><span>чёлка, терминал, голос</span></div>
-      <div><small>дальше</small><b>Windows</b><span>островок у верхнего края экрана</span></div>
-      <div><small>потом</small><b>Android</b><span>тот же Нибл, тот же протокол</span></div>
-      <div><small>потом</small><b>iPhone</b><span>Dynamic Island и «Да / Нет» агенту с телефона</span></div>
     </div>
   </div>
 </section>
@@ -1049,26 +986,6 @@ Object.keys(MOODS).forEach(k => {
 showMood('IDLE', grid.children[0]);
 
 // ── Final ───────────────────────────────────────────────────────────
-// ── Soon: two Nibls meet ────────────────────────────────────────────
-const mA = new Wax(document.getElementById('meetA'), { size: .25 }), mB = new Wax(document.getElementById('meetB'), { size: .25 });
-const mbA = $('mbA'), mbB = $('mbB'), meetStep = $('meetStep');
-let meetT0 = performance.now();
-function meetTick() {
-  const q = ((performance.now() - meetT0) / 1000) % 10;
-  let a = 'IDLE', b = 'SLEEP', s = 'Нибл Кеша ждёт. Пуфик ещё не в сети.';
-  if (q > 1.2) { b = 'IDLE'; s = 'В сети появился Нибл Пуфик'; }
-  if (q > 1.9) { a = 'SURPRISE'; s = 'Кеша замечает соседа — удивлён'; }
-  if (q > 2.7) { a = 'GREET'; s = 'Кеша машет: «Привет, Нибл Пуфик!»'; }
-  if (q > 3.6) { b = 'SURPRISEL'; }
-  if (q > 4.4) { b = 'GREETL'; s = 'Пуфик отвечает: «Привет, Нибл Кеша!»'; }
-  if (q > 7.6) { a = 'IDLE'; b = 'WATCHL'; s = 'Познакомились — теперь живут рядом'; }
-  const pick = (w, m) => { const k = m.replace(/L$/, ''); if (w.cur !== m) { w.cur = m; w.setMood(k); if (STYLE[m]) w.style = STYLE[m]; } };
-  pick(mA, a); pick(mB, b);
-  mbA.classList.toggle('on', q > 2.9 && q < 7); mbB.classList.toggle('on', q > 4.6 && q < 7.6);
-  meetStep.textContent = s;
-}
-if (!REDUCED) setInterval(meetTick, 120); meetTick();
-
 const fin = new Wax(document.getElementById('finalWax'), { size: .28 });
 fin.setMood('DONE');
 setInterval(() => { if (!fin.back) fin.setMood(fin.mood === 'DONE' ? 'MUSIC' : 'DONE'); }, 2600);
@@ -1086,9 +1003,6 @@ function drawBand() {
 Object.keys(FRAMES).forEach(k => { const b = document.createElement('button'); b.type = 'button'; b.textContent = MOODS[k][0]; b.style.setProperty('--c', MOODS[k][2]); b.addEventListener('click', () => { bandKey = k; bandI = 0; [...ttabs.children].forEach(x => x.classList.toggle('on', x === b)); drawBand(); }); ttabs.appendChild(b); });
 [...ttabs.children][1].classList.add('on');
 drawBand(); if (!REDUCED) setInterval(drawBand, 180);
-
-// ── Monitor numbers breathe ─────────────────────────────────────────
-if (!REDUCED) setInterval(() => { $('cpu').textContent = (14 + Math.round(Math.random() * 18)) + '%'; $('net').textContent = '↓ ' + (1 + Math.random() * 3).toFixed(1).replace('.', ',') + ' МБ/с'; }, 1400);
 
 // ── Install tabs and copy buttons ───────────────────────────────────
 const tabs = [...document.querySelectorAll('[role="tab"]')];
