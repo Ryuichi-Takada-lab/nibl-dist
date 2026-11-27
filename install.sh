@@ -3,10 +3,11 @@
 #   curl -fsSL https://raw.githubusercontent.com/Ryuichi-Takada-lab/nibl-dist/main/install.sh | bash
 #   … | bash -s -- --uninstall
 # Options (environment): NIBL_REPO=owner/name   NIBL_ZIP=/path/or/url.zip (for testing)
+#   NIBL_APP="Nibl Dev.app"  with NIBL_ZIP: install the Nibl Dev test copy instead of Nibl
 set -euo pipefail
 
 REPO="${NIBL_REPO:-Ryuichi-Takada-lab/nibl-dist}"
-APP_NAME="Nibl.app"
+APP_NAME="${NIBL_APP:-Nibl.app}"   # NIBL_APP="Nibl Dev.app" installs the test copy next to Nibl
 say()  { printf '\033[38;2;94;230;223m▌\033[0m %s\n' "$*"; }
 fail() { printf '\033[38;2;255;107;139m✖ %s\033[0m\n' "$*" >&2; exit 1; }
 
